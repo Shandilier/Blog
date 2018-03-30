@@ -1,0 +1,18 @@
+{% extends 'basegeneric.html' %}
+{% block content %}
+<h1>Our Top Bloggers</h1>
+
+{% if userprofile_list %}
+
+<ul>
+	{% for user in userprofile_list %}
+	<li><a href="{{ user.get_url }}">{% if user.first_name %} {{ user.first_name }}{{ user.last_name }} 
+		{% endif %}
+	</a></li>
+	{% endfor %}
+</ul>
+
+{% else %}
+<p>Contents not available</p>
+{% endif %}
+{% endblock %}

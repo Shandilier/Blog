@@ -1,0 +1,43 @@
+{% extends "basegeneric.html" %}
+
+{% block content %}
+{% load static %}
+{% if form.errors %}
+<br>
+<br>
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<div class="card" style="width: 40em;">
+  <img class="card-img-top" src="{%  static  'Images/cover.jpg' %}" alt="Card image cap">
+  <div class="card-body">
+    <h4 class="card-title">Login Required</h4>
+    <div>
+  <td>{{ form.username.label_tag }}</td>
+  <td>{{ form.username }}</td>
+</div>
+<div>
+  <td>{{ form.password.label_tag }}</td>
+  <td>{{ form.password }}</td>
+</div>
+<p><a href="{% url 'password_reset' %}">Lost password?</a><br>
+<a href="{%url 'signup' %}">Register</p>
+<div>
+  <input type="submit" value="login" />
+  <input type="hidden" name="next" value="{{ next }}" />
+</div>
+  </div>
+</div>
+</form>
+{% endblock %}

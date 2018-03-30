@@ -1,0 +1,15 @@
+{% extends 'basegeneric.html' %}
+{%  block content %}
+{% if blog_list %}
+	{% for blog in blog_list %}
+		<div class="card" style="width: 50rem;">
+  		<div class="card-body">
+    	<h3 class="card-title">{{ blog.title }}</h3><p>written by-{{blog.author}}</p><h6>{{ blog.timestamp|timesince }} ago</h6>
+    	<p class="card-text">{{ blog.content| truncatechars:40 }}</p>
+    	<a href="{{ blog.get_url }}" class="btn btn-primary">More</a>
+  		</div>
+		</div>
+
+	{% endfor %}
+{%  endif %}
+{% endblock %}	

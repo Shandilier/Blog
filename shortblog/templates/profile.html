@@ -1,0 +1,35 @@
+{% extends 'basegeneric.html' %}
+
+{% block content %}
+{%load static %}
+<h1>PROFILE</h1>
+<br>
+<br> 
+<div class="row">
+<div class="col-sm-6">
+<h3 class="text-left"> {{ user.userprofile.first_name}} {{ user.userprofile.last_name}}</h3> 
+<small style="font-size: 14px">
+<a style="color:rgb(100,70,85)" href="{% url 'userchange'%}"> Edit Account Settings</a><a style="color:rgb(100,70,85)" href="#"> <!-- Edit User Profile --></a></small>
+{% if user.userprofile.profile_image%}
+  <img class="rounded-circle" width="200px" height="200px"  src="{{user.userprofile.profile_image.url}}" alt=error>
+{%endif%}
+	<!-- {% for instance in queryset %}
+		{{instance}}
+		<br>
+
+	{% endfor%} -->
+	<!-- {{queryset}} -->
+<br>
+<br>
+<br>
+
+<pre><h6>Email me at:</h6>{{user.email }}</pre>
+<p>My Work</p>
+{% for blog in user.userprofile.blog_set.all %}
+<div class="container" class="row" >
+<a style="color:red;text-size=30px" href="{% url 'blog-detail' blog.pk %} "><h3>{{blog.title}}</h3></a><br>
+{% endfor %}  
+
+
+</div>
+{% endblock %}

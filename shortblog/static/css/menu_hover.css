@@ -1,0 +1,34 @@
+{% load static %}
+
+.menu-hover-effect {
+  
+  &-1 {
+    
+    a {
+      transition: color 0.2s linear 0s;
+      
+      &:before {
+        content: "";
+        display: block;
+        @include position-absolute($top: 0, $left: 0);
+        width: 100%;
+        height: 100%;
+        background-color: $_cyan; /* set your background-color here */
+        border-radius: 30px;
+        z-index: -1;
+        transform: scale(0.3, 1);
+        opacity: 0;
+      }
+      
+      &:hover {
+        color: $link-hover-color;
+        
+        &:before {
+          transform: scale(1, 1);
+          opacity: 1;
+          transition: all 0.2s linear 0s;
+        }
+      }
+    }
+  }
+}

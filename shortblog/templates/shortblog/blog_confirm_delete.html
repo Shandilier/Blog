@@ -1,0 +1,15 @@
+{% extends 'basegeneric.html' %}
+
+{% block content %}
+
+
+<form method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+
+	{{form.as_p}}
+<p>Are you sure you want to delete?</p>
+	<button type="submit">Yes</button>
+</form>
+
+
+{% endblock %}
